@@ -1,0 +1,139 @@
+*, ::afther, ::before
+   margin: 0
+   padding: 0
+   box-sizing: border-box
+
+html
+   font-size: 10px
+
+body // от данного тега все будет наследоваться дочерним элементам
+   font-family: 'Lato', sans-serif
+   font-weight: 400
+   color: #777777
+   font-size: 1.6rem
+   letter-spacing: .2rem
+   padding: 5rem
+   background-color: white
+
+.container
+   background-color: #F7F7F7
+
+.header  
+   height: 95vh 
+   background: linear-gradient(90.05deg, rgba(186, 133, 84, 0.7) 0.03%, rgba(1, 1, 1, 0.7) 99.94%),  url(../img/header-background.jpg) center / cover no-repeat
+   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%) //обрезка фотографии снизу
+   position: relative
+   &__logo
+      position: absolute // позиционируем относительно родительского элемента
+      top: 5rem
+      left: 5rem
+      height: 7rem
+      width: 5.6rem
+   &__box
+      position: absolute
+      top: 40% //отчет идет от начала заголовка
+      left: 50%
+      transform: translate(-50%, -50%) // сдвигаем заголовок
+      width: 100% 
+      text-align: center // выравнивание по центру
+
+.title-first
+   color: #FFFFFF
+   &__main
+      text-transform: uppercase //заглавный текст
+      display: block //'span' из строчного в блочный 
+      font-weight: 800
+      font-size: 5rem
+      line-height: 6rem
+      letter-spacing: 1rem
+      margin-bottom: 1rem // отступ между строчками
+      animation-name: leftToRight  
+      animation-duration: 1.7s //длительность анимации
+      animation-delay: 1s //задержка загрузки анимации( чтобы прогрузилась страница)
+      animation-timing-function: ease // делает анимацию более плавной 
+      backface-visibility: hidden
+      animation-fill-mode: backwards
+   &__secondary
+      display: block
+      font-weight: 100
+      font-size: 4rem
+      line-height: 4.8rem
+      letter-spacing: .5rem
+      animation-name: rightToLeft
+      animation-duration: 1.7s
+      animation-delay: 1s
+      animation-timing-function: ease
+      backface-visibility: hidden
+      margin-bottom: 6.5rem
+      animation-fill-mode: backwards
+
+.btn
+   &:link,&:visited //псевдоклассы
+      text-transform: uppercase //заглавные
+      text-decoration: none // убираем изменения
+      color: #777777
+      padding: 1.5rem 4rem
+      background: white
+      border-radius: 5rem
+      display: inline-block
+      transition: all 0.3s //выполнение действия
+      position: relative
+      font-size: 2rem
+   &:hover
+      transform: translateY(-4px) //приподнятие кнопки при наведении
+      box-shadow:(0px 4px 4px rgba(0, 0, 0, 0.5)) // тень кнопки при наведении
+      &::after
+         opacity: 0
+         transform: scaleX(1.5) scaleY(1.7)
+   &:active
+      transform: translateY(-2px) // вдавливание при нажатии
+
+   &::after //пвсевдо элементы
+      content: ""
+      background: white
+      width: 100%
+      height: 100%
+      border-radius: 5rem
+      display: inline-block
+      position: absolute
+      top: 0
+      left: 0
+      z-index: -1
+      transition: all  0.4s
+   &_animated
+      animation: BtnToUp 0.5s ease-out 0.7s
+      animation-fill-mode: backwards //делает задержку на появление элемента на экране 
+      
+
+@keyframes leftToRight
+   0%
+      opacity: 0
+      transform: translateX(-10rem)
+   
+   80%
+      transform: translateX(1rem)
+      
+   100%
+      opacity: 1
+         transform: translateX(0rem)
+
+@keyframes rightToLeft
+   0%
+      opacity: 0
+      transform: translateX(10rem)
+   
+   80%
+      transform: translateX(-1rem)
+      
+   100%
+      opacity: 1
+         transform: translateX(0rem)
+
+@keyframes BtnToUp
+   0%
+      opacity: 0
+      transform: translateY(5rem)
+   
+   100%
+      opacity: 1
+         transform: translateY(0rem)
